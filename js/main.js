@@ -58,8 +58,8 @@ if (isDemoMode) {
                     border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; text-align: center;">
             <div style="font-size: 13px; color: #fb923c; font-weight: 600;">📱 Mode Preview Lokal</div>
             <div style="font-size: 11px; color: #94a3b8; margin-top: 4px;">
-                Data tersimpan di memory browser (tidak ke Firebase).<br>
-                Deploy/Hosting file ini agar data tersimpan permanen.
+                Data tersimpan di memory HP (tidak ke Firebase).<br>
+                Deploy ke Vercel agar data tersimpan permanen.
             </div>
         </div>
     `;
@@ -68,20 +68,17 @@ if (isDemoMode) {
 
 // ===== REAL-TIME COUNTER =====
 function setupCounter() {
-    // [PERBAIKAN]: Baca localStorage saat refresh di Mode Demo
-    if (isDemoMode) {
-        const existing = JSON.parse(localStorage.getItem('fk_waitlist_demo') || '[]');
-        counterEl.textContent = existing.length;
-        return;
-    }
-
     if (!db) {
         counterEl.textContent = '0';
         return;
     }
     
+    if (isDemoMode) {
+        counterEl.textContent = '0';
+        return;
+    }
+    
     try {
-        // [FITUR UNGGULAN]: Auto update angka saat ada orang lain yg daftar dari HP/PC lain
         db.collection('waitlist').onSnapshot((snapshot) => {
             const count = snapshot.size;
             counterEl.textContent = count;
@@ -131,14 +128,12 @@ form.addEventListener('submit', async (e) => {
     
     try {
         if (isDemoMode) {
-            // [PERBAIKAN]: Simpan ke localStorage agar bisa dibaca saat refresh
             const existing = JSON.parse(localStorage.getItem('fk_waitlist_demo') || '[]');
             existing.push(formData);
             localStorage.setItem('fk_waitlist_demo', JSON.stringify(existing));
             console.log("DEMO: Data tersimpan di localStorage", formData);
-            
-            await new Promise(r => setTimeout(r, 800)); // Simulasi loading
-            counterEl.textContent = existing.length; // Update angka di layar
+            await new Promise(r => setTimeout(r, 800));
+            counterEl.textContent = existing.length;
             
         } else if (db) {
             await db.collection('waitlist').add(formData);
@@ -219,4 +214,3 @@ if (document.readyState === 'loading') {
 }
 
 console.log('FakturKita loaded. Demo mode:', isDemoMode, '| Firebase ready:', firebaseReady);
-
