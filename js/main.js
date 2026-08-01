@@ -37,43 +37,53 @@ const btnLoading = submitBtn.querySelector('.btn-loading');
 const successDiv = document.getElementById('waitlistSuccess');
 const counterEl = document.getElementById('waitlistCount');
 
-// Atur maksimal slot di sini (Sesuai HTML Anda: 50 Slot)
+// Atur maksimal slot
 const MAX_SLOTS = 50; 
 let currentCount = 0;
 
-// FUNGSI 1: Ambil data Real-time agar count tidak 0 saat refresh
-function setupWaitlistCount() {
+function loadWaitlistCount() {
     if (!db) { 
         counterEl.textContent = '0'; 
         return; 
     }
     
-    // onSnapshot akan membaca jumlah data langsung dari Firebase secara live
+    // Gunakan onSnapshot agar data realtime dan sisa slot bisa dihitung mundur
     db.collection('waitlist').onSnapshot((snapshot) => {
         currentCount = snapshot.size;
+        
+        // 1. Update jumlah orang yang sudah daftar
         counterEl.textContent = currentCount;
 
-        // FUNGSI 2: Logika memblokir form jika slot sudah habis
+        // 2. Hitung mundur sisa slot
+        let sisaSlot = MAX_SLOTS - currentCount;
+        if (sisaSlot < 0) sisaSlot = 0; // Pastikan tidak minus
+
+        // Cari elemen angka "50" di HTML dan ubah angkanya
+        const slotElements = document.querySelectorAll('.counter-number');
+        if(slotElements.length >= 3) {
+            // Index ke-2 adalah angka 50 di HTML Anda (0: jumlah daftar, 1: angka 3 bulan, 2: angka 50 slot)
+            slotElements[2].textContent = sisaSlot;
+        }
+
+        // 3. Matikan tombol otomatis jika slot habis (0)
         if (currentCount >= MAX_SLOTS) {
             submitBtn.disabled = true;
-            btnText.textContent = "Slot Sudah Penuh";
-            submitBtn.style.backgroundColor = "#94a3b8"; // Ubah tombol jadi abu-abu
+            btnText.textContent = "Maaf, Slot Penuh";
+            submitBtn.style.backgroundColor = "#94a3b8"; // Ubah tombol jadi warna abu-abu
             submitBtn.style.cursor = "not-allowed";
         }
     }, (error) => {
-        console.error("Gagal mengambil jumlah waitlist dari Firebase:", error);
+        console.error("Error loading count:", error);
     });
 }
-
-// Jalankan counter saat halaman dimuat
-setupWaitlistCount();
+loadWaitlistCount();
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Validasi ekstra sebelum submit ke database
+    // Cek lagi saat disubmit, jaga-jaga kalau ada yang mencoba hack form
     if (currentCount >= MAX_SLOTS) {
-        alert('Mohon maaf, kuota 50 slot early bird sudah terisi penuh!');
+        alert('Mohon maaf, 50 slot early bird sudah terisi penuh!');
         return;
     }
 
@@ -103,11 +113,16 @@ form.addEventListener('submit', async (e) => {
     try {
         if (db) {
             await db.collection('waitlist').add(formData);
-            console.log("Data berhasil masuk ke Firestore");
+            console.log("Data saved to Firestore");
+        } else {
+            console.log('DEMO MODE - Data:', formData);
+            await new Promise(r => setTimeout(r, 1500));
         }
 
         form.style.display = 'none';
         successDiv.style.display = 'block';
+
+        // Hapus kode manual counter + 1 di sini karena onSnapshot sudah mengurusnya otomatis
 
     } catch (error) {
         console.error('Error:', error);
@@ -141,4 +156,4 @@ document.querySelector('.btn-secondary').addEventListener('click', (e) => {
     alert('Demo interaktif akan tersedia saat MVP selesai. Gabung waitlist untuk akses pertama!');
 });
 
-console.log('FakturKita Landing Page loaded - Realtime Counter Active');
+console.log('FakturKita Landing Page loaded');
