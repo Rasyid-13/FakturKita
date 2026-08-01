@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>FakturKita — Buat Faktur & Faktur Pajak dalam 60 Detik</title>
+    <meta name="description" content="Platform invoice dan faktur pajak digital untuk UMKM, freelancer, dan profesional jasa Indonesia. Tanpa paham akuntansi.">
+    <meta name="keywords" content="faktur, invoice, faktur pajak, UMKM, freelancer, e-faktur, aplikasi faktur">
+    <meta property="og:title" content="FakturKita — Buat Faktur dalam 60 Detik">
+    <meta property="og:description" content="Invoice profesional untuk UMKM Indonesia. Mulai dari Rp49.000/bulan.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://fakturkita.id/og-image.jpg">
+    <link rel="canonical" href="https://fakturkita.id/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-logo">📄</span>
+            <span class="nav-title">FakturKita</span>
+        </div>
+        <a href="#waitlist" class="nav-cta">Daftar Waitlist</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🚀 Segera Launching</div>
+        <h1 class="hero-title">Buat Faktur & Faktur Pajak dalam <span class="highlight">60 Detik</span></h1>
+        <p class="hero-subtitle">Tanpa paham akuntansi. Tanpa install software. Langsung dari HP Anda.</p>
+        <p class="hero-target">Untuk UMKM • Freelancer • Profesional Jasa • Online Seller</p>
+
+        <div class="hero-cta-group">
+            <a href="#waitlist" class="btn-primary">Gabung Waitlist Gratis →</a>
+            <a href="#demo" class="btn-secondary">Lihat Demo</a>
+        </div>
+
+        <div class="hero-trust">
+            <div class="trust-item">
+                <span class="trust-icon">⚡</span>
+                <span>60 Detik</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">📱</span>
+                <span>Mobile-First</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">🔒</span>
+                <span>E-Faktur Ready</span>
+            </div>
+            <div class="trust-item">
+                <span class="trust-icon">💰</span>
+                <span>Mulai Rp49rb</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <h2 class="section-title">Masalah yang Sering Dihadapi</h2>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="problem-emoji">😰</div>
+                <h3>Faktur Berantakan</h3>
+                <p>Catatan di Excel, WhatsApp, dan buku tulis. Dokumen hilang saat butuh laporan pajak.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-emoji">💸</div>
+                <h3>Software Mahal</h3>
+                <p>Jurnal Rp199rb, Accurate Rp333rb per bulan. Terlalu mahal untuk UMKM pemula.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-emoji">🤯</div>
+                <h3>Terlalu Rumit</h3>
+                <p>Butuh training, terminologi akuntansi membingungkan. UMKM cuma butuh faktur, bukan neraca.</p>
+            </div>
+            <div class="problem-card">
+                <div class="problem-emoji">⏰</div>
+                <h3>Piutang Tertagih</h3>
+                <p>Lupa menagih klien. Cash flow terganggu karena tidak ada sistem pengingat otomatis.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <h2 class="section-title">FakturKita Solusinya</h2>
+        <div class="solution-grid">
+            <div class="solution-feature">
+                <div class="feature-number">01</div>
+                <div class="feature-icon">📝</div>
+                <h3>Invoice dalam 60 Detik</h3>
+                <p>Pilih template, isi data klien dan item, selesai. PDF siap kirim via WhatsApp atau email.</p>
+            </div>
+            <div class="solution-feature">
+                <div class="feature-number">02</div>
+                <div class="feature-icon">🏷️</div>
+                <h3>Faktur Pajak Otomatis</h3>
+                <p>Generate faktur pajak yang siap lapor ke DJP Online. Tidak perlu input manual ke e-Faktur.</p>
+            </div>
+            <div class="solution-feature">
+                <div class="feature-number">03</div>
+                <div class="feature-icon">📲</div>
+                <h3>Kirim via WhatsApp</h3>
+                <p>1 klik kirim faktur ke klien via WhatsApp. Klien langsung terima PDF profesional.</p>
+            </div>
+            <div class="solution-feature">
+                <div class="feature-number">04</div>
+                <div class="feature-icon">🔔</div>
+                <h3>Pengingat Piutang</h3>
+                <p>Sistem otomatis mengingatkan klien yang belum bayar. Cash flow Anda tetap lancar.</p>
+            </div>
+            <div class="solution-feature">
+                <div class="feature-number">05</div>
+                <div class="feature-icon">📊</div>
+                <h3>Laporan Sederhana</h3>
+                <p>Lihat laba/rugi dan piutang dalam 1 halaman. Tidak perlu paham debit-kredit.</p>
+            </div>
+            <div class="solution-feature">
+                <div class="feature-number">06</div>
+                <div class="feature-icon">📁</div>
+                <h3>Client Portal</h3>
+                <p>Kumpulkan dokumen dari klien tanpa email bolak-balik. Semua tersimpan rapi dan aman.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Preview -->
+    <section class="pricing">
+        <h2 class="section-title">Harga yang Terjangkau</h2>
+        <p class="pricing-subtitle">Setengah harga dari kompetitor, fitur tidak kalah</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-name">FREE</div>
+                <div class="pricing-price">Rp<span class="price-amount">0</span></div>
+                <div class="pricing-period">selamanya</div>
+                <ul class="pricing-features">
+                    <li>✓ 5 faktur/bulan</li>
+                    <li>✓ 1 template dasar</li>
+                    <li>✓ Watermark FakturKita</li>
+                    <li>✓ Kirim via WhatsApp</li>
+                </ul>
+            </div>
+            <div class="pricing-card popular">
+                <div class="pricing-badge">PALING LARIS</div>
+                <div class="pricing-name">PRO</div>
+                <div class="pricing-price">Rp<span class="price-amount">99rb</span></div>
+                <div class="pricing-period">per bulan</div>
+                <ul class="pricing-features">
+                    <li>✓ Faktur unlimited</li>
+                    <li>✓ Semua template</li>
+                    <li>✓ Tanpa watermark</li>
+                    <li>✓ E-faktur integration</li>
+                    <li>✓ Client portal</li>
+                    <li>✓ Laporan keuangan</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-name">BUSINESS</div>
+                <div class="pricing-price">Rp<span class="price-amount">199rb</span></div>
+                <div class="pricing-period">per bulan</div>
+                <ul class="pricing-features">
+                    <li>✓ Semua fitur PRO</li>
+                    <li>✓ 5 user</li>
+                    <li>✓ API access</li>
+                    <li>✓ White-label</li>
+                    <li>✓ Priority support</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pricing-compare">
+            <p>💡 <strong>Bandrol:</strong> Jurnal Rp199rb • Accurate Rp333rb • Kledo Rp149rb</p>
+        </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section class="waitlist" id="waitlist">
+        <div class="waitlist-container">
+            <h2 class="waitlist-title">Gabung Waitlist Sekarang</h2>
+            <p class="waitlist-subtitle">Dapatkan <strong>3 bulan GRATIS</strong> saat launch + template faktur premium senilai Rp250rb</p>
+
+            <div class="waitlist-counter">
+                <div class="counter-item">
+                    <span class="counter-number" id="waitlistCount">0</span>
+                    <span class="counter-label">Orang sudah daftar</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number">3</span>
+                    <span class="counter-label">Bulan gratis</span>
+                </div>
+                <div class="counter-item">
+                    <span class="counter-number">50</span>
+                    <span class="counter-label">Slot early bird</span>
+                </div>
+            </div>
+
+            <form class="waitlist-form" id="waitlistForm">
+                <div class="form-group">
+                    <label for="wlName">Nama Lengkap</label>
+                    <input type="text" id="wlName" name="name" placeholder="Contoh: Budi Santoso" required>
+                </div>
+                <div class="form-group">
+                    <label for="wlEmail">Email Aktif</label>
+                    <input type="email" id="wlEmail" name="email" placeholder="budi@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="wlPhone">Nomor WhatsApp</label>
+                    <input type="tel" id="wlPhone" name="phone" placeholder="0812xxxxxxx" required>
+                </div>
+                <div class="form-group">
+                    <label for="wlBusiness">Jenis Usaha</label>
+                    <select id="wlBusiness" name="businessType" required>
+                        <option value="">Pilih jenis usaha...</option>
+                        <option value="umkm_b2b">UMKM B2B (Jual ke Perusahaan)</option>
+                        <option value="freelancer">Freelancer / Jasa Profesional</option>
+                        <option value="online_seller">Online Seller / E-commerce</option>
+                        <option value="retail">Retail / Toko Offline</option>
+                        <option value="food">FnB / Kuliner</option>
+                        <option value="service">Jasa Lainnya</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="wlPain">Kesulitan Terbesar Saat Ini</label>
+                    <select id="wlPain" name="painPoint" required>
+                        <option value="">Pilih kesulitan utama...</option>
+                        <option value="make_invoice">Susah membuat faktur yang benar</option>
+                        <option value="tax_invoice">Bingung dengan faktur pajak / e-faktur</option>
+                        <option value="chase_payment">Sulit menagih piutang ke klien</option>
+                        <option value="expensive">Software existing terlalu mahal</option>
+                        <option value="complicated">Software existing terlalu rumit</option>
+                        <option value="documents">Dokumen keuangan berantakan</option>
+                        <option value="other">Lainnya</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-waitlist" id="submitBtn">
+                    <span class="btn-text">Daftar Waitlist Sekarang →</span>
+                    <span class="btn-loading" style="display:none;">Mengirim...</span>
+                </button>
+            </form>
+
+            <div class="waitlist-success" id="waitlistSuccess" style="display:none;">
+                <div class="success-icon">🎉</div>
+                <h3>Berhasil Terdaftar!</h3>
+                <p>Anda mendapatkan <strong>3 bulan GRATIS</strong> + template premium.</p>
+                <p>Kami akan hubungi via WhatsApp saat aplikasi siap.</p>
+                <div class="success-share">
+                    <p>Ajak teman untuk dapat bonus tambahan:</p>
+                    <a href="https://wa.me/?text=Saya%20baru%20daftar%20waitlist%20FakturKita%20-%20aplikasi%20faktur%20untuk%20UMKM.%20Gabung%20juga%20di%20https%3A%2F%2Ffakturkita.id" class="btn-whatsapp" target="_blank">📤 Bagikan ke WhatsApp</a>
+                </div>
+            </div>
+
+            <div class="waitlist-guarantee">
+                <span>🔒 Data Anda aman. Tidak akan dijual atau dibagikan.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2 class="section-title">Pertanyaan Umum</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Apakah FakturKita cocok untuk UMKM yang belum PKP?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Sangat cocok! Anda bisa membuat invoice sederhana tanpa faktur pajak. Saat usaha Anda berkembang dan menjadi PKP, fitur e-faktur bisa langsung aktif tanpa pindah aplikasi.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Bisa dipakai di HP Android saja?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, FakturKita dibangun mobile-first. Anda bisa membuat faktur, kirim ke klien, dan lacak pembayaran langsung dari HP Android. Tidak perlu laptop.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Apakah data saya aman?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Data Anda disimpan di server Google Firebase dengan enkripsi standar industri. Backup otomatis setiap hari. Kami tidak pernah mengakses data faktur Anda tanpa izin.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Bisa integrasi dengan e-Faktur DJP Online?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Ya, pada versi PRO Anda bisa generate faktur pajak yang formatnya siap diunggah ke e-Faktur DJP Online. Kami juga sedang mengembangkan integrasi API langsung dengan DJP.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Kapan aplikasi siap digunakan?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Kami targetkan beta launch dalam 3 bulan ke depan. Pengguna waitlist akan mendapat akses pertama dan 3 bulan gratis penuh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <span class="footer-logo">📄</span>
+            <span class="footer-title">FakturKita</span>
+        </div>
+        <p class="footer-tagline">Invoice profesional untuk UMKM Indonesia</p>
+        <div class="footer-links">
+            <a href="#waitlist">Waitlist</a>
+            <a href="#" onclick="alert('Coming soon')">Blog</a>
+            <a href="#" onclick="alert('Coming soon')">Hubungi Kami</a>
+        </div>
+        <p class="footer-copy">© 2026 FakturKita. Dibuat dengan ❤️ untuk UMKM Indonesia.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
